@@ -1,86 +1,99 @@
-"use client";
-import { useState } from "react";
-import ModelViewer from "./ModelViewer.jsx";
+'use client';
+import ModelViewer from './ModelViewer.jsx';
+import Carousel from './Carousel.jsx';
 
 const images = [
-  "/img1.png",
-  "/img2.jpg",
-  "/img3.jpg",
-  "/img4.jpg"
+  {
+    src: '/img1.png',
+    alt: 'Image 1',
+    title: 'EVENT 1',
+    description: 'This is a short description for Event 1.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 2',
+    title: 'EVENT 2',
+    description: 'This is a short description for Event 2.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 3',
+    title: 'EVENT 3',
+    description: 'This is a short description for Event 3.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 4',
+    title: 'EVENT 4',
+    description: 'This is a short description for Event 4.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 1',
+    title: 'EVENT 1',
+    description: 'This is a short description for Event 1.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 2',
+    title: 'EVENT 2',
+    description: 'This is a short description for Event 2.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 3',
+    title: 'EVENT 3',
+    description: 'This is a short description for Event 3.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 4',
+    title: 'EVENT 4',
+    description: 'This is a short description for Event 4.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 1',
+    title: 'EVENT 1',
+    description: 'This is a short description for Event 1.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 2',
+    title: 'EVENT 2',
+    description: 'This is a short description for Event 2.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 3',
+    title: 'EVENT 3',
+    description: 'This is a short description for Event 3.',
+  },
+  {
+    src: '/img1.png',
+    alt: 'Image 4',
+    title: 'EVENT 4',
+    description: 'This is a short description for Event 4.',
+  },
 ];
 
 export default function Page() {
-  const [current, setCurrent] = useState(0);
-
-  const nextSlide = () => setCurrent((current + 1) % images.length);
-  const prevSlide = () =>
-    setCurrent((current - 1 + images.length) % images.length);
-
-  // Container size: same as 4 images together
-  const imgWidth = 600; // width of one image
-  const imgHeight = 400; // height of one image
-  const gap = 16; // gap between images
-  const containerWidth = imgWidth * 4 + gap * 3;
-
   return (
-    <div style={{ width: "100vw", height: "100vh", position: "relative" }}>
-      {/* Fullscreen 3D Model */}
+    <div style={{ width: '100vw', height: '100vh', position: 'relative' }}>
       <ModelViewer url="/ani.glb" autoRotate={true} />
-
-      {/* Carousel Overlay */}
       <div
         style={{
-          width: containerWidth,
-          height: imgHeight,
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          gap: `${gap}px`,
+          position: 'absolute',
+          top: '50%',
+          left: '50%',
+          transform: 'translate(-50%, -50%)',
           zIndex: 20,
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
         }}
       >
-        {/* Previous Button */}
-        <button
-          onClick={prevSlide}
-          style={{
-            background: "rgba(255,255,255,0.5)",
-            padding: "8px 12px",
-            borderRadius: "999px",
-            cursor: "pointer",
-          }}
-        >
-          ◀
-        </button>
-
-        {/* Current Image */}
-        <img
-          src={images[current]}
-          alt={`slide-${current}`}
-          style={{
-            width: imgWidth,
-            height: imgHeight,
-            objectFit: "cover",
-            borderRadius: "8px",
-            border: "2px solid white",
-          }}
-        />
-
-        {/* Next Button */}
-        <button
-          onClick={nextSlide}
-          style={{
-            background: "rgba(255,255,255,0.5)",
-            padding: "8px 12px",
-            borderRadius: "999px",
-            cursor: "pointer",
-          }}
-        >
-          ▶
-        </button>
+        <Carousel images={images} loop autoplay showPagination showNavigation />
       </div>
     </div>
   );
