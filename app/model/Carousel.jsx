@@ -18,7 +18,7 @@ import ElectricBorder from './ElectricBorder.jsx';
 
 const Carousel = ({
   images,
-  className,
+  className = '',
   showPagination = false,
   showNavigation = false,
   loop = true,
@@ -28,7 +28,6 @@ const Carousel = ({
   const css = `
   .Carousal_003 {
     width: 100%;
-    height: 450px;
     padding-bottom: 50px !important;
   }
   
@@ -36,7 +35,7 @@ const Carousel = ({
     background-position: center;
     background-size: cover;
     width: 300px;
-    height: 400px;
+    height: auto;
   }
 
   .swiper-pagination-bullet {
@@ -53,6 +52,7 @@ const Carousel = ({
     justify-content: center;
   }
 `;
+
   return (
     <motion.div
       initial={{ opacity: 0, translateY: 20 }}
@@ -112,7 +112,7 @@ const Carousel = ({
           modules={[EffectCoverflow, Autoplay, Pagination, Navigation]}
         >
           {images.map((image, index) => (
-            <SwiperSlide key={index} className="">
+            <SwiperSlide key={index}>
               <ElectricBorder
                 color="#7df9ff"
                 speed={1}
@@ -137,19 +137,18 @@ const Carousel = ({
                     src={image.src}
                     alt={image.alt}
                     style={{
-                      flex: '1',
                       minHeight: 0,
                     }}
                   />
-                  <div style={{ 
-                    padding: '1rem', 
-                    backgroundColor: 'black', 
-                    flex: 1, 
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'center'
-                    }}>
+                  <div
+                    style={{
+                      padding: '1rem',
+                      backgroundColor: 'black',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                    }}
+                  >
                     <h3 style={{ margin: 0, color: '#7df9ff' }}>
                       {image.title}
                     </h3>
@@ -167,6 +166,7 @@ const Carousel = ({
               </ElectricBorder>
             </SwiperSlide>
           ))}
+
           {showNavigation && (
             <div>
               <div className="swiper-button-next">
